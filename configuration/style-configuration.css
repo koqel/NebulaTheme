@@ -38,3 +38,27 @@
   --spacing-md: 24px;
   --spacing-lg: 32px;
 }
+
+/* Light Mode Variables */
+body.light-mode {
+  /* Core Colors - Light Mode */
+  --bg-color: #f8f7ff; 
+  --text-color: #1e293b; 
+  --accent-color: #8b5cf6; 
+  --accent-secondary: #7c3aed;
+  --accent-tertiary: #4f46e5;
+  
+  /* Component Colors - Light Mode */
+  --dropdown-bg: #ffffff; 
+  --card-bg: #ffffff; 
+  --card-hover: #f1eaff;
+  --overall-status-bg: #ffffff;
+  --overall-status-text: #1e293b;
+  --separator-color: rgba(0, 0, 0, 0.08);
+  
+  /* Visual Elements - Light Mode */
+  --box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.06);
+  --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  --glow-shadow: 0 0 25px rgba(168, 85, 247, 0.15);
+  --hover-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+}

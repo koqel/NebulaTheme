@@ -1,7 +1,7 @@
-// Add custom JS modifications here
-// Check out https://github.com/layeredy/uptimematrix-mods/ for public modifications made by others
 // Nebula Theme - Advanced JS for UptimeMatrix
 document.addEventListener('DOMContentLoaded', function() {
+  // Initialize Navbar and Footer based on configuration
+  initializeNavbarAndFooter();
   // Create dynamic starfield background
   createStarfield();
   
@@ -257,4 +257,224 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initial call and event listener for resize
   handleResponsiveLayout();
   window.addEventListener('resize', handleResponsiveLayout);
+  
+  // Function to initialize Navbar and Footer
+  function initializeNavbarAndFooter() {
+    // Check if navbar is enabled in configuration
+    if (typeof themeSettings !== 'undefined' && themeSettings.enableNavbar) {
+      createNavbar();
+      
+      // Add scroll behavior to navbar
+      window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.nebula-navbar');
+        if (navbar) {
+          if (window.scrollY > 10) {
+            navbar.classList.add('scrolled');
+          } else {
+            navbar.classList.remove('scrolled');
+          }
+        }
+      });
+    } else {
+      // Hide navbar element if disabled
+      const navbar = document.getElementById('nebula-navbar');
+      if (navbar) navbar.style.display = 'none';
+    }
+    
+    // Check if enhanced footer is enabled in configuration
+    if (typeof themeSettings !== 'undefined' && themeSettings.enableFooter) {
+      createFooter();
+      
+      // Hide default copyright if enhanced footer is enabled
+      const copyright = document.querySelector('.copyright');
+      if (copyright) copyright.style.display = 'none';
+    } else {
+      // Hide footer element if disabled
+      const footer = document.getElementById('nebula-footer');
+      if (footer) footer.style.display = 'none';
+    }
+  }
+  
+  // Function to create navbar
+  function createNavbar() {
+    const navbar = document.getElementById('nebula-navbar');
+    if (!navbar) return;
+    
+    // Create brand section
+    const brand = document.createElement('a');
+    brand.href = '/';
+    brand.className = 'navbar-brand';
+    
+    // Add logo
+    const logo = document.createElement('img');
+    logo.src = 'https://cdn.layeredy.com/uptimematrix/logo.png';
+    logo.alt = 'Logo';
+    brand.appendChild(logo);
+    
+    // Add company name
+    const companyName = document.createElement('span');
+    companyName.textContent = themeSettings.companyName || 'Company';
+    brand.appendChild(companyName);
+    
+    navbar.appendChild(brand);
+    
+    // Create links section
+    const links = document.createElement('div');
+    links.className = 'navbar-links';
+    
+    // Add configured navigation links
+    if (themeSettings.navLinks) {
+      for (const [label, url] of Object.entries(themeSettings.navLinks)) {
+        const link = document.createElement('a');
+        link.href = url;
+        link.textContent = label;
+        links.appendChild(link);
+      }
+    }
+    
+    // Add dark mode toggle if enabled
+    if (themeSettings.enableDarkModeToggle) {
+      const darkModeToggle = document.createElement('button');
+      darkModeToggle.className = 'dark-mode-toggle';
+      darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+      darkModeToggle.setAttribute('title', 'Toggle Dark/Light Mode');
+      darkModeToggle.addEventListener('click', toggleDarkMode);
+      links.appendChild(darkModeToggle);
+    }
+    
+    navbar.appendChild(links);
+    
+    // Create hamburger menu for mobile
+    const hamburger = document.createElement('div');
+    hamburger.className = 'hamburger-menu';
+    hamburger.innerHTML = '<span></span><span></span><span></span>';
+    hamburger.addEventListener('click', function() {
+      this.classList.toggle('active');
+      links.classList.toggle('show');
+    });
+    
+    navbar.appendChild(hamburger);
+  }
+  
+  // Function to create enhanced footer
+  function createFooter() {
+    const footer = document.getElementById('nebula-footer');
+    if (!footer) return;
+    
+    const footerContainer = document.createElement('div');
+    footerContainer.className = 'footer-container';
+    
+    // Create info section
+    const footerInfo = document.createElement('div');
+    footerInfo.className = 'footer-info';
+    
+    // Add logo and company name
+    const footerLogo = document.createElement('div');
+    footerLogo.className = 'footer-logo';
+    
+    const logoImg = document.createElement('img');
+    logoImg.src = 'https://cdn.layeredy.com/uptimematrix/logo.png';
+    logoImg.alt = 'Logo';
+    footerLogo.appendChild(logoImg);
+    
+    const companyName = document.createElement('div');
+    companyName.className = 'footer-company';
+    companyName.textContent = themeSettings.companyName || 'Company';
+    footerLogo.appendChild(companyName);
+    
+    footerInfo.appendChild(footerLogo);
+    
+    // Add slogan
+    const slogan = document.createElement('div');
+    slogan.className = 'footer-slogan';
+    slogan.textContent = themeSettings.companySlogan || 'Service Status';
+    footerInfo.appendChild(slogan);
+    
+    footerContainer.appendChild(footerInfo);
+    
+    // Create social icons section
+    const footerSocial = document.createElement('div');
+    footerSocial.className = 'footer-social';
+    
+    // Add social icons
+    const socialIcons = {
+      twitter: 'fa-twitter',
+      github: 'fa-github',
+      linkedin: 'fa-linkedin-in',
+      facebook: 'fa-facebook-f',
+      instagram: 'fa-instagram',
+      discord: 'fa-discord',
+      youtube: 'fa-youtube',
+      twitch: 'fa-twitch'
+    };
+    
+    if (themeSettings.socialLinks) {
+      for (const [platform, url] of Object.entries(themeSettings.socialLinks)) {
+        if (url && url.trim() !== '' && socialIcons[platform]) {
+          const link = document.createElement('a');
+          link.href = url;
+          link.className = 'social-icon';
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          link.innerHTML = `<i class="fab ${socialIcons[platform]}"></i>`;
+          link.setAttribute('title', platform.charAt(0).toUpperCase() + platform.slice(1));
+          footerSocial.appendChild(link);
+        }
+      }
+    }
+    
+    footerContainer.appendChild(footerSocial);
+    
+    // Create legal section
+    const footerLegal = document.createElement('div');
+    footerLegal.className = 'footer-legal';
+    
+    const copyright = document.createElement('div');
+    copyright.className = 'footer-copyright';
+    copyright.innerHTML = `&copy; ${new Date().getFullYear()} ${themeSettings.companyName || 'Company'}. All rights reserved.`;
+    footerLegal.appendChild(copyright);
+    
+    const credit = document.createElement('div');
+    credit.className = 'footer-credit';
+    credit.innerHTML = `Status page by <a href="https://uptimematrix.com" target="_blank">UptimeMatrix</a><br>Theme made with ❤️ by <a href="https://plasma.services/" target="_blank"><strong>Plasma Services</strong></a>`;
+    footerLegal.appendChild(credit);
+    
+    footerContainer.appendChild(footerLegal);
+    
+    footer.appendChild(footerContainer);
+  }
+  
+  // Function to toggle dark/light mode
+  function toggleDarkMode() {
+    document.body.classList.toggle('light-mode');
+    
+    // Update icon
+    const darkModeToggle = document.querySelector('.dark-mode-toggle i');
+    if (darkModeToggle) {
+      if (document.body.classList.contains('light-mode')) {
+        darkModeToggle.className = 'fas fa-sun';
+      } else {
+        darkModeToggle.className = 'fas fa-moon';
+      }
+    }
+    
+    // Save preference
+    if (document.body.classList.contains('light-mode')) {
+      localStorage.setItem('theme', 'light');
+    } else {
+      localStorage.setItem('theme', 'dark');
+    }
+    
+    console.log('Theme toggled to', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+  }
+  
+  // Check for saved theme preference
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'light') {
+    document.body.classList.add('light-mode');
+    const darkModeToggle = document.querySelector('.dark-mode-toggle i');
+    if (darkModeToggle) {
+      darkModeToggle.className = 'fas fa-sun';
+    }
+  }
 });

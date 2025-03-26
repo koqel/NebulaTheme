@@ -1,5 +1,5 @@
-<!-- Status page developed by UptimeMatrix, a venture by Layeredy Software (Version 1.0.0). | github.com/layeredy/uptimematrix-statuspage-stars  -->
-<!-- Theme: Stars github.com/layeredy/uptimematrix-statuspage-stars -->
+<!-- Status page developed by Plasma Services(Version 1.0.0). | github.com/layeredy/uptimematrix-statuspage-stars  -->
+<!-- Theme: Nebula - Modified from Stars theme github.com/layeredy/uptimematrix-statuspage-stars -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +10,12 @@
     <link rel="stylesheet" href="configuration/style-configuration.css"> <!--Configuration CSS-->
     <link rel="stylesheet" href="static/css/custom.css"> <!--User CSS-->
     <link rel="icon" href="https://cdn.layeredy.com/uptimematrix/logo.png" type="image/x-icon">
+    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <!-- Font Awesome for navbar and footer icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts for enhanced typography -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
     <meta name="description" content="Demo | github.com/layeredy">
     <meta property="og:title" content="Demo">
     <meta property="og:description" content="Get up-to-date information on the status of Layeredy's services.">
@@ -18,6 +23,9 @@
     <meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
+    <!-- Navbar (will be injected by JS) -->
+    <nav id="nebula-navbar" class="nebula-navbar"></nav>
+    
     <div class="container">
         <div id="announcement-bar"></div>
         <h1><a href="https://layeredy.com"><img src="https://cdn.layeredy.com/uptimematrix/wordmark.png" alt="UptimeMatrix" class="logo"></a></h1>
@@ -25,15 +33,17 @@
         <div id="maintenance-alerts"></div>
         <div id="services"></div>
         <div id="status-updates"></div>
-        <div class="copyright">
-            Status page by <a href="https://uptimematrix.com" target="_blank"><strong>UptimeMatrix</strong>   <!-- You can disable this in data.json (but please don't! Support open source projects!) -->
         </div>
     </div>
+    
+    <!-- Enhanced footer with social links (will be injected by JS) -->
+    <footer id="nebula-footer" class="nebula-footer"></footer>
+    
     <script src="static/js/uptimematrix.js"></script> <!-- UptimeMatrix JS -->
     <script src="configuration/configuration.js"></script> <!-- Configuration JS -->
-    <script src="static/js/theme.js"></script> <!-- Configuration JS -->
+    <script src="static/js/theme.js"></script> <!-- Theme JS -->
     <script src="static/js/custom.js"></script> <!-- User JS -->
 </body>
 </html>
-<!-- Status page developed by UptimeMatrix, a venture by Layeredy Software (Version 1.0.0). | github.com/layeredy/uptimematrix-statuspage-stars  -->
-<!-- Theme: Stars github.com/layeredy/uptimematrix-statuspage-stars -->
+<!-- Status page developed by Plasma Services (Version 1.0.0). | github.com/layeredy/uptimematrix-statuspage-stars  -->
+<!-- Theme: Nebula - Modified from Stars theme github.com/layeredy/uptimematrix-statuspage-stars -->
