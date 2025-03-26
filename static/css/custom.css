@@ -1,0 +1,463 @@
+/* Custom CSS Modifications go here
+Check out https://github.com/layeredy/uptimematrix-mods/ for public modifications made by others
+*/
+/* Nebula Theme - Advanced Custom CSS for UptimeMatrix */
+
+/* Font Imports */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+/* Main Background Effect with Animated Stars */
+body {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(135deg, #0c0a1d 0%, #1a0b2e 50%, #170a33 100%);
+  position: relative;
+  overflow-x: hidden;
+  color: var(--text-color);
+  min-height: 100vh;
+}
+
+/* Background Star Field Animation */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(1px 1px at 50px 180px, rgba(255, 255, 255, 0.9), rgba(0, 0, 0, 0)),
+    radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.9), rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 160px 120px, rgba(255, 255, 255, 0.8), rgba(0, 0, 0, 0)),
+    radial-gradient(1px 1px at 230px 270px, rgba(255, 255, 255, 0.7), rgba(0, 0, 0, 0)),
+    radial-gradient(1px 1px at 320px 100px, rgba(255, 255, 255, 0.8), rgba(0, 0, 0, 0)),
+    radial-gradient(1px 1px at 470px 230px, rgba(255, 255, 255, 0.6), rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 520px 80px, rgba(255, 255, 255, 0.7), rgba(0, 0, 0, 0)),
+    radial-gradient(1px 1px at 640px 200px, rgba(255, 255, 255, 0.8), rgba(0, 0, 0, 0)),
+    radial-gradient(1px 1px at 380px 330px, rgba(255, 255, 255, 0.6), rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 750px 160px, rgba(255, 255, 255, 0.7), rgba(0, 0, 0, 0));
+  background-repeat: repeat;
+  background-size: 900px 500px;
+  z-index: -2;
+  pointer-events: none;
+  animation: starsMovement 180s linear infinite;
+}
+
+/* Cosmic Nebula Gradient */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(ellipse at 10% 20%, rgba(168, 85, 247, 0.2) 0%, transparent 60%),
+    radial-gradient(ellipse at 90% 80%, rgba(99, 102, 241, 0.2) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 50%, rgba(6, 182, 212, 0.08) 0%, transparent 70%);
+  z-index: -1;
+  pointer-events: none;
+  animation: nebulaGlow 20s ease-in-out infinite alternate;
+}
+
+@keyframes starsMovement {
+  from { background-position: 0 0; }
+  to { background-position: 900px 500px; }
+}
+
+@keyframes nebulaGlow {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+/* Glass Morphism Container */
+.container {
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  animation: fadeInUp 0.9s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Enhanced Logo with Glow Effect */
+h1 {
+  margin-bottom: var(--spacing-lg);
+}
+
+.logo {
+  height: 60px;
+  filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.5));
+  transition: var(--transition);
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.8));
+  transform: scale(1.08) translateY(-3px);
+}
+
+/* Futuristic Overall Status Panel */
+#overall-status {
+  background: linear-gradient(110deg, var(--card-bg), rgba(26, 21, 51, 0.9), rgba(26, 21, 51, 0.8));
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--card-shadow);
+  transform: translateY(0);
+  transition: var(--transition);
+  overflow: hidden;
+  border-left-width: 6px;
+  letter-spacing: 0.02em;
+  position: relative;
+}
+
+#overall-status:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--hover-shadow);
+}
+
+/* Status Panel Light Effect */
+#overall-status::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(135deg, rgba(168, 85, 247, 0.12), transparent 80%),
+    radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.05) 0%, transparent 40%);
+  z-index: 0;
+}
+
+/* Futuristic Service Groups */
+.service-group {
+  border-radius: var(--card-border-radius);
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  margin-bottom: var(--spacing-md);
+  border: 1px solid rgba(168, 85, 247, 0.15);
+  transition: var(--transition);
+  position: relative;
+  background: linear-gradient(160deg, rgba(26, 21, 51, 0.9), rgba(26, 21, 51, 0.6));
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.service-group:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--hover-shadow), 0 0 20px rgba(168, 85, 247, 0.15);
+  border-color: rgba(168, 85, 247, 0.3);
+}
+
+/* Service Group Headers */
+.service-group h2 {
+  padding: var(--spacing-md);
+  background: linear-gradient(to right, rgba(26, 21, 51, 1), rgba(26, 21, 51, 0.9));
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Service Group Header Glow Effect */
+.service-group h2::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 150%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.08), transparent);
+  transform: skewX(-25deg);
+  transition: all 0.8s ease;
+}
+
+.service-group:hover h2::after {
+  left: 150%;
+}
+
+/* Enhanced Dropdown Icon */
+.service-group h2 .dropdown-icon {
+  color: var(--accent-color);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+}
+
+.service-group.open h2 .dropdown-icon {
+  transform: rotate(180deg) translateY(1px);
+}
+
+/* Service List */
+.service-list {
+  background: rgba(26, 21, 51, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Futuristic Service Items */
+.service-item {
+  padding: var(--spacing-sm);
+  margin: 8px 10px;
+  border-radius: var(--button-border-radius);
+  transition: var(--transition);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(26, 21, 51, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.service-item:hover {
+  background-color: var(--card-hover);
+  transform: translateX(5px);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Service Item Edge Glow Effect */
+.service-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--accent-color), var(--accent-tertiary));
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.service-item:hover::before {
+  opacity: 1;
+}
+
+/* Advanced Status Indicators */
+.service-status {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 6px 14px;
+  border-radius: 30px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Service Status Indicators with improved styling */
+.status-operational {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.3));
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.15);
+}
+
+.status-operational::before {
+  background-color: var(--success-color);
+  box-shadow: 0 0 15px var(--success-color);
+}
+
+.status-degraded {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.3));
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.15);
+}
+
+.status-issue {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(239, 68, 68, 0.3));
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.15);
+}
+
+.status-slow {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.2), rgba(249, 115, 22, 0.3));
+  border: 1px solid rgba(249, 115, 22, 0.4);
+  box-shadow: 0 0 10px rgba(249, 115, 22, 0.15);
+}
+
+.status-maintenance {
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(6, 182, 212, 0.3));
+  border: 1px solid rgba(6, 182, 212, 0.4);
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.15);
+}
+
+/* Status Pulse Animation */
+.service-status::before {
+  animation: statusPulse 2s infinite;
+}
+
+@keyframes statusPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+}
+
+/* Enhanced Alerts and Updates Cards */
+.alert, .update {
+  border-radius: var(--card-border-radius);
+  background: linear-gradient(160deg, rgba(26, 21, 51, 0.8), rgba(26, 21, 51, 0.6));
+  border-left-width: 5px;
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  transition: var(--transition);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: relative;
+}
+
+.alert:hover, .update:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: var(--hover-shadow);
+}
+
+/* Alerts & Updates Top Gradient Line */
+.alert::before, .update::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.5), transparent);
+}
+
+.alert h3, .update h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin-bottom: var(--spacing-xs);
+  background: linear-gradient(90deg, var(--text-color), rgba(226, 232, 240, 0.8));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.alert .date, .update .date {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-bottom: var(--spacing-sm);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Enhanced Copyright Section */
+.copyright {
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing-md) 0;
+  color: rgba(226, 232, 240, 0.6);
+  text-align: center;
+  font-size: 0.9rem;
+  position: relative;
+}
+
+.copyright::before {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(168, 85, 247, 0.3), transparent);
+  margin: 0 auto 15px;
+}
+
+.copyright a {
+  color: var(--accent-color);
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition);
+  position: relative;
+  text-shadow: 0 0 8px rgba(168, 85, 247, 0.3);
+}
+
+.copyright a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background: linear-gradient(to right, var(--accent-color), var(--accent-tertiary));
+  transition: width 0.3s ease;
+}
+
+.copyright a:hover::after {
+  width: 100%;
+}
+
+/* Enhanced Loading Animation */
+#loading-animation {
+  background: linear-gradient(135deg, var(--bg-color) 0%, #1a0b2e 50%, #170a33 100%);
+}
+
+#loading-animation .spinner {
+  border: 3px solid rgba(255, 255, 255, 0.05);
+  border-top: 3px solid var(--accent-color);
+  border-right: 3px solid var(--accent-tertiary);
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.5);
+  animation: spinAndGlow 1.5s linear infinite;
+}
+
+@keyframes spinAndGlow {
+  0% {
+    transform: rotate(0deg);
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(168, 85, 247, 0.8);
+  }
+  100% {
+    transform: rotate(360deg);
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+  }
+}
+
+/* Custom Section Headers */
+#services > h2, #status-updates > h2, #maintenance-alerts > h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-md);
+  color: var(--text-color);
+  letter-spacing: 0.03em;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 8px;
+}
+
+#services > h2::after, #status-updates > h2::after, #maintenance-alerts > h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, var(--accent-color), transparent);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .service-group h2 {
+    padding: var(--spacing-sm);
+  }
+  
+  .service-item {
+    padding: var(--spacing-xs);
+    margin: 6px 6px;
+  }
+  
+  #overall-status {
+    margin-bottom: var(--spacing-md);
+    font-size: 1rem;
+  }
+}
